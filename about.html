@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1280, initial-scale=0.3, maximum-scale=5, minimum-scale=0.1, user-scalable=yes">
+  <title>关于我们 - 愈知桥</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+	  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent; /* 让背景透出来 */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+      /* --- 核心配色变量 (保持原有设计风格) --- */
+      :root {
+          --primary-color: #0E7C7B; /* 医疗青 */
+          --secondary-color: #FF8C42; /* 活力橙 */
+          --accent-color: #17C3B2; /* 亮青色 */
+          --bg-light: #F9F9F9;
+          --text-dark: #333333;
+          --text-gray: #666666;
+          --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          --transition: all 0.3s ease;
+      }
+
+      /* --- 页面基础布局修正 --- */
+      body {
+          background: rgba(255, 255, 255, 0.15); /* 半透明浅色 */
+          color: var(--text-dark);
+		  backdrop-filter: blur(6px); /* 玻璃感 */
+          line-height: 1.6;
+          overflow-x: hidden;
+      }
+
+      /* 确保内容在导航栏下方显示 (假设导航栏高度约60-80px) */
+      main.about-page {
+          padding-top: 0; /* 由Hero区域接管顶部视觉 */
+          width: 100%;
+          max-width: 100%; /* 覆盖可能存在的container限制，实现全屏通栏 */
+      }
+
+      /* --- 1. Hero 视觉区域 (新版) --- */
+      .about-hero {
+          background: linear-gradient(135deg, rgba(14, 124, 123, 0.85) 0%, rgba(255, 140, 66, 0.8) 100%), url('images/hero_bg.jpg'); 
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed; /* 视差滚动效果 */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+          padding: 0 50px;
+          margin-bottom: 0;
+          position: relative;
+		  width: 100%;              /* 宽度铺满屏幕 */
+		  max-width: 100%;          /* 可选，保证宽度不超屏 */
+		  aspect-ratio: 16 / 9;     /* 宽高比，可按实际需求调整 */
+		  gap: 40px;
+		  border-radius: 24px;
+		  box-shadow: var(--shadow);
+		  border: 1px solid rgba(255, 255, 255, 0.3);
+		  overflow: hidden;
+		            /* 左右内边距 */
+		  margin-bottom: 60px;
+      }
+
+      .hero-content {
+          max-width: 900px;
+          z-index: 2;
+          animation: fadeInUp 1s ease-out;
+      }
+      
+      .hero-title {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+          font-weight: 900;
+          text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      }
+      
+      .hero-subtitle {
+          font-size: 1.5rem;
+          font-weight: 300;
+          margin-bottom: 2rem;
+          opacity: 0.9;
+      }
+
+      /* --- 通用区块样式 --- */
+      section {
+          padding: 5rem 10%; /* 统一内边距 */
+      }
+
+      .section-title {
+          text-align: center;
+          font-size: 2.2rem;
+          margin-bottom: 4rem;
+          position: relative;
+          color: var(--text-dark);
+          font-weight: 800;
+      }
+
+      .section-title::after {
+          content: '';
+          display: block;
+          width: 80px;
+          height: 4px;
+          background: var(--secondary-color);
+          margin: 15px auto 0;
+          border-radius: 2px;
+      }
+
+      /* --- 2. 核心理念 (双轮驱动) --- */
+      #vision {
+          background: white;
+      }
+
+      .dual-drive {
+          display: flex;
+          justify-content: center;
+          gap: 3rem;
+          flex-wrap: wrap;
+          align-items: stretch;
+      }
+
+      .drive-card {
+          background: white;
+          padding: 3rem 2rem;
+          border-radius: 20px;
+          width: 40%;
+          min-width: 320px;
+          text-align: center;
+          box-shadow: var(--card-shadow);
+          border-top: 6px solid transparent;
+          transition: var(--transition);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .drive-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      }
+
+      .drive-card.student { border-top-color: var(--secondary-color); }
+      .drive-card.elderly { border-top-color: var(--primary-color); }
+
+      .drive-icon {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+      }
+
+      /* 中间的连接图标 */
+      .drive-connector {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          color: #ddd;
+      }
+
+      /* --- 3. 项目背景 (重点强调) --- */
+      #background {
+          background: var(--bg-light);
+          position: relative;
+      }
+
+      .bg-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+      }
+
+      .bg-item {
+          background: white;
+          padding: 2.5rem;
+          border-radius: 16px;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(0,0,0,0.03);
+          box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+          transition: var(--transition);
+      }
+
+      .bg-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(14, 124, 123, 0.1);
+          border-color: var(--primary-color);
+      }
+
+      .bg-item h3 {
+          color: var(--primary-color);
+          margin-bottom: 1rem;
+          font-size: 1.4rem;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          position: relative;
+          z-index: 2;
+      }
+
+      .bg-item p {
+          font-size: 1rem;
+          color: var(--text-gray);
+          text-align: justify;
+          position: relative;
+          z-index: 2;
+          line-height: 1.8;
+      }
+
+      .highlight-number {
+          font-size: 5rem;
+          font-weight: 900;
+          color: rgba(14, 124, 123, 0.05); /* 极淡的背景数字 */
+          position: absolute;
+          right: -10px;
+          top: -15px;
+          line-height: 1;
+          font-family: 'Arial', sans-serif;
+          z-index: 1;
+      }
+
+      /* --- 4. 创新举措 --- */
+      #innovation {
+          background: linear-gradient(to bottom, #fff 0%, #f0fdfd 100%);
+      }
+
+      .innovate-container {
+          display: flex;
+          flex-direction: column;
+          gap: 4rem;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
+
+      .innovate-row {
+          display: flex;
+          align-items: center;
+          gap: 4rem;
+          opacity: 0.95;
+      }
+
+      .innovate-row:nth-child(even) {
+          flex-direction: row-reverse;
+      }
+
+      .innovate-img {
+          flex: 1;
+          height: 350px;
+          background: #e0e0e0;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          border: 4px solid white;
+      }
+      
+      .innovate-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s ease;
+      }
+
+      .innovate-img:hover img {
+          transform: scale(1.05);
+      }
+
+      .innovate-text {
+          flex: 1;
+      }
+
+      .tag {
+          display: inline-block;
+          padding: 6px 16px;
+          background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+          color: white;
+          border-radius: 30px;
+          font-size: 0.85rem;
+          margin-bottom: 1.2rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+      }
+
+      .innovate-text h3 {
+          font-size: 1.8rem;
+          margin-bottom: 1.2rem;
+          color: var(--text-dark);
+      }
+
+      .innovate-text p {
+          color: var(--text-gray);
+          line-height: 1.8;
+          font-size: 1.05rem;
+      }
+
+      /* --- 5. 团队风采 --- */
+      #team {
+          background: white;
+          padding-bottom: 6rem;
+      }
+
+      /* 集体大合照 */
+      .team-group-photo {
+          width: 100%;
+          max-width: 1100px;
+          height: 500px;
+          margin: 0 auto 5rem auto;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: var(--card-shadow);
+          position: relative;
+      }
+
+      .team-group-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s;
+      }
+      
+      .team-group-photo:hover img {
+          transform: scale(1.03);
+      }
+
+      .team-group-caption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+          color: white;
+          padding: 3rem 2rem 2rem 2rem;
+          text-align: center;
+      }
+
+      /* 成员头像网格 */
+      .team-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); /* 每排 4 个 */
+          gap: 2.5rem;
+          justify-content: center; /* 整体居中 */
+          text-align: center;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
+	  .team-row {
+	      display: grid;
+	      grid-template-columns: repeat(3, 1fr); /* 每排 4 个 */
+	      gap: 2.5rem;
+	      justify-content: center; /* 整体居中 */
+	      text-align: center;
+	      max-width: 1200px;
+	      margin: 0 auto;
+	  }
+
+
+      .member-card {
+          padding: 1rem;
+          transition: var(--transition);
+      }
+
+      .member-card:hover {
+          transform: translateY(-5px);
+      }
+
+      .member-card img {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 4px solid white;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+          margin-bottom: 1.2rem;
+      }
+
+      .member-name {
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: var(--text-dark);
+          margin-bottom: 0.3rem;
+      }
+
+      .member-role {
+          font-size: 0.9rem;
+          color: var(--primary-color);
+          font-weight: 500;
+      }
+	  
+
+      /* 简单动画 */
+      @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      
+  </style>
+</head>
+<body>
+  
+  <header class="site-header">
+    <div class="logo"><img src="images/logo.jpg" alt="logo" /><span>愈知桥</span></div>
+    <nav class="nav">
+        </nav>
+    <button id="speechToggle" class="btn-speech">语音助手</button>
+  </header>
+
+  <main class="about-page">
+      
+      <section class="about-hero">
+		   
+          <div class="hero-content">
+              <h1 class="hero-title">青春赋能 · 智慧康养</h1>
+              <h2 class="hero-subtitle">构建“学生赋能+老年康养”双轮驱动生态<br>做中西医结合康养领域的先行者</h2>
+          </div>
+      </section>
+
+      <section id="vision">
+        <h2 class="section-title">双向奔赴的价值共生</h2>
+        <div class="dual-drive">
+            <div class="drive-card student">
+                <div class="drive-icon" style="color: var(--secondary-color);">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>青年学子 · 实践赋能</h3>
+                <p>解决高校康养专业学生“实践机会匮乏”与“就业竞争力不足”痛点。通过标准化课程与模拟实操，实现精准就业。</p>
+            </div>
+            
+            <div class="drive-connector">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+
+            <div class="drive-card elderly">
+                <div class="drive-icon" style="color: var(--primary-color);">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>银发群体 · 智慧康养</h3>
+                <p>解决老年人“康复指导难”与“服务专业性不足”痛点。提供临床级的一体化、个性化康复指导与陪伴。</p>
+            </div>
+        </div>
+      </section>
+
+      <section id="background">
+        <h2 class="section-title">项目背景与选题意义</h2>
+        <div class="bg-grid">
+            
+            <div class="bg-item">
+                <div class="highlight-number">01</div>
+                <h3><i class="fas fa-landmark"></i> 政策驱动</h3>
+                <p>紧握数字化转型的政策红利窗口，响应国家对中医药传承创新及养老服务体系建设的号召，顺应“互联网+医疗健康”发展趋势。</p>
+            </div>
+
+            <div class="bg-item">
+                <div class="highlight-number">02</div>
+                <h3><i class="fas fa-users"></i> 社会需求</h3>
+                <p>面对“规模大、速度快、程度深”的老龄化浪潮，以及青年就业压力。双群体痛点催生万亿级市场机遇，急需新型服务模式。</p>
+            </div>
+
+            <div class="bg-item">
+                <div class="highlight-number">03</div>
+                <h3><i class="fas fa-user-md"></i> 行业痛点</h3>
+                <p>当前康养行业面临“人才供需错配”：企业缺复合型人才，学生缺实操经验；同时偏瘫等老年群体难以获取精准化康复指导。</p>
+            </div>
+
+            <div class="bg-item">
+                <div class="highlight-number">04</div>
+                <h3><i class="fas fa-microchip"></i> 技术支撑</h3>
+                <p>知识工程与适老化技术的深度融合。利用AI大模型与Web技术，打造轻量化平台，打破信息孤岛，实现知识普惠。</p>
+            </div>
+
+        </div>
+      </section>
+
+      <section id="innovation">
+        <h2 class="section-title">三大创新 破解难题</h2>
+        <div class="innovate-container">
+            
+            <div class="innovate-row">
+                <div class="innovate-img">
+                    <img src="images/innovation_course.jpg" alt="专业课程体系" onerror="this.src='https://placehold.co/600x400/0E7C7B/white?text=Professional+Courses'">
+                </div>
+                <div class="innovate-text">
+                    <span class="tag">深度调研</span>
+                    <h3>专业课程体系</h3>
+                    <p>调研50+头部康养企业，提炼8大核心能力模块。将临床知识拆解为200+标准化课程单元，形成“企业需要什么，学生就学什么”的精准培养路径。</p>
+                </div>
+            </div>
+
+            <div class="innovate-row">
+                <div class="innovate-img">
+                    <img src="images/innovation_ai.jpg" alt="双端服务模式" onerror="this.src='https://placehold.co/600x400/FF8C42/white?text=AI+Dual+Service'">
+                </div>
+                <div class="innovate-text">
+                    <span class="tag">AI赋能</span>
+                    <h3>双端服务模式</h3>
+                    <p><strong>学生端：</strong>AI生成个性化成长方案，全周期就业服务。<br><strong>老人端：</strong>症状自评、视频指导、远程反馈一站式服务。尤其针对偏瘫群体提供精准康复方案。</p>
+                </div>
+            </div>
+
+            <div class="innovate-row">
+                <div class="innovate-img">
+                    <img src="images/innovation_knowledge.jpg" alt="知识转化机制" onerror="this.src='https://placehold.co/600x400/17C3B2/white?text=Knowledge+Loop'">
+                </div>
+                <div class="innovate-text">
+                    <span class="tag">闭环迭代</span>
+                    <h3>知识转化机制</h3>
+                    <p>构建“临床专家审核-企业导师验证-学生实践反馈”闭环。三位一体架构：知识库整合中西医精髓，AI实现浏览器端健康评估，沉浸式视频教学规范操作。</p>
+                </div>
+            </div>
+
+        </div>
+      </section>
+
+      <section id="team">
+        <h2 class="section-title">我们的团队</h2>
+
+        <div class="team-grid">
+            <div class="member-card">
+                <img src="images/member_1.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=Leader'">
+                <div class="member-name">项目负责人</div>
+				<div class="member-name">李沂真</div>
+                <div class="member-role">统筹与战略</div>
+            </div>
+            <div class="member-card">
+                <img src="images/member_2.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=Tech'">
+                <div class="member-name">后端负责人</div>
+				<div class="member-name">李鹏飞</div>
+                <div class="member-role">架构设计</div>
+            </div>
+            <div class="member-card">
+                <img src="images/member_3.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=BackEnd'">
+                <div class="member-name">临床转化</div>
+                <div class="member-name">杜梓晗</div>
+                <div class="member-role">临床知识核心</div>
+            </div>
+            <div class="member-card">
+                <img src="images/member_4.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=Medical'">
+                <div class="member-name">前端负责人</div>
+                <div class="member-name">崔舜翔</div>
+                <div class="member-role">技术开发</div>
+            </div>
+			</div>
+			<div class="team-row">
+            <div class="member-card">
+                <img src="images/member_5.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=PM'">
+                <div class="member-name">项目策划</div>
+				<div class="member-name">王泽雅</div>
+                <div class="member-role">数据支持</div>
+            </div>
+            <div class="member-card">
+                <img src="images/member_6.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=Ops'">
+                <div class="member-name">市场分析</div>
+				<div class="member-name">赵冰心</div>
+                <div class="member-role">数字化落地</div>
+            </div>
+			<div class="member-card">
+			    <img src="images/member_7.jpg" alt="成员" onerror="this.src='https://placehold.co/150x150?text=Ops'">
+			    <div class="member-name">产品宣传</div>
+				<div class="member-name">杨舒童</div>
+			    <div class="member-role">市场推广</div>
+			</div>
+        </div>
+      </section>
+
+  </main>
+
+  <footer class="site-footer">© 愈知桥：青春赋能与老年康复双端价值共生的康养生态先行者</footer>
+  
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tts_stt.js"></script>
+  <script>window.pageName='about';</script>
+</body>
+</html>
