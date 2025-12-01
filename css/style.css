@@ -1944,7 +1944,7 @@ body {
 
 /* 老年版特有样式优化 */
 .senior-theme {
-  font-size: 18px;
+  font-size: 1.406vw;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
@@ -1963,13 +1963,13 @@ body {
 
 .senior-theme .page-header.senior h2 {
   color: white;
-  font-size: 2.5rem;
+  font-size: 1.953vw;
   margin-bottom: 16px;
 }
 
 .senior-theme .page-header.senior p {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2rem;
+  font-size: 0.938vw;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -1978,18 +1978,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap:2.34vw;
   margin-top: 20px;
   background: rgba(255, 255, 255, 0.2);
-  padding: 15px 30px;
-  border-radius: 50px;
+  padding: 1.17vw 2.34vw;
+  border-radius: 3.91vw;
   backdrop-filter: blur(10px);
 }
 
 .weather-info, .date-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.78vw;
   font-weight: 500;
 }
 
